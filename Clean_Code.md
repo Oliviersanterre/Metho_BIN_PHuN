@@ -1,7 +1,7 @@
 # Comment coder proprement
 **Les conseils proposés dans ce guide sont tirés, en majeur partie, de l'ouvrage _Clean Code: A Handbook of Agile Software
 Craftsmanship_ de Robert C. Martin. Il s'agit d'un ouvrage de référence sur la question
-des bonnes pratiques de programmation. Seul, le contenu des quatre premiers chapitres de l'ouvrage sont résumés dans ce guide. 
+des bonnes pratiques de programmation. Seul le contenu des quatre premiers chapitres de l'ouvrage sont résumés dans ce guide. 
 Nous vous invitons à consulter le livre si vous voulez aller plus loin.**
 
 ## 1. Nommer les variables
@@ -47,30 +47,12 @@ Privilégier le code propre.
 >2. **Éviter les commentaires qui expliquent ce que fait du code simple**. Vous pouvez tenir pour acquis que la personne qui lira votre code connaît les fonctionnalités de base du langage que vous utilisez. Il n’a pas besoin de plus d’explications. 
 >3. **Ne pas laisser de code commenté**. On peut avoir tendance à commenter du code qui ne sert plus, mais dont on pense avoir besoin plus tard. Il vaut mieux l’effacer et se reposer sur notre outil de contrôle des versions (git). 
 
+| Conseil | Mauvais                                                                       | Bon |
+|---------|-------------------------------------------------------------------------------|-----|
+| 1 et 2  | `# itération sur la liste d'articles pour aller chercher les titres`<br>`# 'a' représente la liste des articles (qui est une liste de liste)` <br>`list = []`<br>`for i in range(52):`<br>|`title_index = 3`<br>`number_of_articles = len(articles)`<br>`article_titles = []`<br>`for article_index in range(number_of_articles):`<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`article_titles.append(articles[article_index][title_index])`<br>|
+| 3       | `articles = get_articles(path)`<br>`# articles = articles[:-1]`<br>`# articles = do_something_funky(articles)`<br>`save(articles)`<br> |`articles = get_articles(path)`<br>`save(articles)`<br>|
 
-**Mauvais** <br>
-`# itération sur la liste d'articles pour aller chercher les titres`<br>
-`# 'a' représente la liste des articles (qui est une liste de liste)` <br>
-`list = []`<br>
-`for i in range(52):`<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`list.append(a[i][3])`<br>
-**Bon**<br>
-`title_index = 3`<br>
-`number_of_articles = len(articles)`<br>
-`article_titles = []`<br>
-`for article_index in range(number_of_articles):`<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`article_titles.append(articles[article_index][title_index])`<br>
-<br>
 
-**Mauvais** <br>
-`articles = get_articles(path)`<br>
-`# articles = articles[:-1]`<br>
-`# articles = do_something_funky(articles)`<br>
-`save(articles)`<br>
-**Bon**<br>
-`articles = get_articles(path)`<br>
-`save(articles)`<br>
-<br>
 
 >**Les commentaires sont **utiles** pour** : <br>
 >1. **Justifier un choix**, par exemple si vous faites un choix d’algorithme, un choix de libraire, ou un choix de conception qui mérite d’être justifié. <br>
