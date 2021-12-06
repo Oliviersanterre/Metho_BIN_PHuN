@@ -47,10 +47,12 @@ Privilégier le code propre.
 >2. **Éviter les commentaires qui expliquent ce que fait du code simple**. Vous pouvez tenir pour acquis que la personne qui lira votre code connaît les fonctionnalités de base du langage que vous utilisez. Il n’a pas besoin de plus d’explications. 
 >3. **Ne pas laisser de code commenté**. On peut avoir tendance à commenter du code qui ne sert plus, mais dont on pense avoir besoin plus tard. Il vaut mieux l’effacer et se reposer sur notre outil de contrôle des versions (git). 
 
-| Conseil | Mauvais                                                                       | Bon |
-|---------|-------------------------------------------------------------------------------|-----|
-| 1 et 2  | `# itération sur la liste d'articles pour aller chercher les titres`<br>`# 'a' représente la liste des articles (qui est une liste de liste)` <br>`list = []`<br>`for i in range(52):`<br>|`title_index = 3`<br>`number_of_articles = len(articles)`<br>`article_titles = []`<br>`for article_index in range(number_of_articles):`<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`article_titles.append(articles[article_index][title_index])`<br>|
-| 3       | `articles = get_articles(path)`<br>`# articles = articles[:-1]`<br>`# articles = do_something_funky(articles)`<br>`save(articles)`<br> |`articles = get_articles(path)`<br>`save(articles)`<br>|
+| Conseil |      |  |
+|---------|-------------|-----|
+| 1 et 2  | **Mauvais** |`# itération sur la liste d'articles pour aller chercher les titres`<br>`# 'a' représente la liste des articles (qui est une liste de liste)` <br>`list = []`<br>`for i in range(52):`<br>|
+| 1 et 2  | **Bon**     |`title_index = 3`<br>`number_of_articles = len(articles)`<br>`article_titles = []`<br>`for article_index in range(number_of_articles):`<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`article_titles.append(articles[article_index][title_index])`<br>|
+| 3       | **Mauvais** | `articles = get_articles(path)`<br>`# articles = articles[:-1]`<br>`# articles = do_something_funky(articles)`<br>`save(articles)`<br>|
+| 3       | **Bon**     |`articles = get_articles(path)`<br>`save(articles)`<br>|
 
 
 
