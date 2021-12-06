@@ -47,12 +47,12 @@ Privilégier le code propre.
 >2. **Éviter les commentaires qui expliquent ce que fait du code simple**. Vous pouvez tenir pour acquis que la personne qui lira votre code connaît les fonctionnalités de base du langage que vous utilisez. Il n’a pas besoin de plus d’explications. 
 >3. **Ne pas laisser de code commenté**. On peut avoir tendance à commenter du code qui ne sert plus, mais dont on pense avoir besoin plus tard. Il vaut mieux l’effacer et se reposer sur notre outil de contrôle des versions (git). 
 
-| Conseil |      |  |
-|---------|-------------|-----|
-| 1 et 2  | **Mauvais** |`# itération sur la liste d'articles pour aller chercher les titres`<br>`# 'a' représente la liste des articles (qui est une liste de liste)` <br>`list = []`<br>`for i in range(52):`<br>|
-| 1 et 2  | **Bon**     |`title_index = 3`<br>`number_of_articles = len(articles)`<br>`article_titles = []`<br>`for article_index in range(number_of_articles):`<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`article_titles.append(articles[article_index][title_index])`<br>|
-| 3       | **Mauvais** | `articles = get_articles(path)`<br>`# articles = articles[:-1]`<br>`# articles = do_something_funky(articles)`<br>`save(articles)`<br>|
-| 3       | **Bon**     |`articles = get_articles(path)`<br>`save(articles)`<br>|
+| Conseil |      |                                                                                                                                                                                                                                                |
+|---------|-------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1 et 2  | **Mauvais** | `# itération sur la liste d'articles pour aller chercher les titres`<br>`# 'a' représente la liste des articles (qui est une liste de liste)` <br>`list = []`<br>`for i in range(52):`<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`list.append(a[i][3])` |
+| 1 et 2  | **Bon**     | `title_index = 3`<br>`number_of_articles = len(articles)`<br>`article_titles = []`<br>`for article_index in range(number_of_articles):`<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`article_titles.append(articles[article_index][title_index])`<br>     |
+| 3       | **Mauvais** | `articles = get_articles(path)`<br>`# articles = articles[:-1]`<br>`# articles = do_something_funky(articles)`<br>`save(articles)`<br>                                                                                                         |
+| 3       | **Bon**     | `articles = get_articles(path)`<br>`save(articles)`<br>                                                                                                                                                                                        |
 
 
 
@@ -62,5 +62,18 @@ Privilégier le code propre.
 >3. **Documenter une fonction** (préciser le type des paramètres et les données retournées). Voir, par exemple, l'outil [Docstrings](https://realpython.com/documenting-python-code/#documenting-your-python-code-base-using-docstrings) en _python_
 >4. **Expliquer un bout de code complexe** (dont la logique serait difficile à comprendre même pour un programmeur ou une programmeuse d’expérience). 
 
+## 3. Les fonctions
 
+>**L’utilité des fonctions** : 
+>* **Éviter la redondance**. Avoir plusieurs versions d’un même bout de code peut générer des erreurs. En effet, si l’on veut modifier ce bout de code, on devra mettre à jour chaque version. Or, il se peut qu’on oublie de le faire pour une version. On prend alors le risque d’avoir deux bouts de code qu’on croit identiques, mais qui font des choses différentes. 
+>* **Dévoiler ce que son code fait**. En imbriquant notre code dans des fonctions, et en faisant bien notre travail de nommage de ces fonctions, on dévoile au lecteur ce que notre code fait. 
+>* **Masquer la complexité**. La personne qui lit notre code n’a pas toujours besoin de savoir comment fonctionne notre code dans le détail. En imbriquant notre code dans des fonctions, on offre au lecteur une sorte de résumé de ce que notre code fait. S’il veut avoir plus de détails, il pourra aller voir l’implémentation de nos fonctions. 
+
+>**Conseils pour écrire de bonnes fonctions** 
+>* **Courtes**. Viser un maximum de 20 lignes. Si elle est plus longue, on doit la décomposer en de multiples fonctions plus courtes. 
+>* **Aucun _side effect_** : Une fonction ne change pas la valeur de variables déclarées à l’extérieur d’elle. 
+>* **Un niveau d’abstraction**. Le code au plus bas niveau d'abstraction est le code qui fait les opérations les plus simples, par exemple, lire un fichier, faire des opérations simples sur des chaînes de caractères ou sur des listes, faire des opérations mathématiques, etc. Une fonction qui regroupe du code du plus bas niveau serait au deuxième niveau d’abstraction, et une fonction qui regroupe une multitude de fonctions de deuxième niveau serait au troisième niveau, et ainsi de suite. Dans une fonction, il faut éviter d’avoir des lignes de codes qui sont à différents niveaux d'abstractions. 
+>* **Fait une chose** (à un niveau d’abstraction). Votre fonction doit uniquement faire ce que son nom suggère. Par exemple, si votre fonction s’occupe de télécharger des données, elle doit uniquement faire cela. Elle ne doit pas s’occuper d’une partie de travail de nettoyage des données. «Faire une chose» doit être compris en relation avec le concept de niveau d'abstraction. La «chose», ou l’action, que fait une fonction peut très bien être décomposable en de multiples 
+actions plus simples. Pour faire une analogie avec une tâche de la vie quotidienne, «acheter du lait» peut être considéré comme faire une action, même si l’on peut décomposer cette action en une multitude d’actions plus simples. Si j'arrête prendre un café en allant acheter du lait, j'ai alors fait deux choses. 
+>* **Structure de l’article de journal**. Dans un fichier de fonctions (ou le fichier d’une classe), mettre les fonctions du plus haut niveau en haut du fichier, et les fonctions de plus bas niveau en bas du fichier. De cette manière, le lecteur pourra avoir accès à une vue d’ensemble en lisant le début du fichier, et pourra avoir accès à la complexité seulement s’il le désire. 
 
