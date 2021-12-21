@@ -15,20 +15,25 @@ Pour le dire succintement il faut dire :
 >* **d'une variable -> ce que c'est.**
 >* **d'une fonction -> ce qu'elle fait.**
 
-### Quelques trucs à respecter pour bien nommer ses variables
+### Quelques conseils pour bien nommer ses variables
 >1. **Éviter les noms de variables courts.**
 >2. **Éviter les abréviations.**
 >3. **Éviter des noms de variables qui varient peu entres eux.**
 >4. **Éviter d’utiliser deux mots différents pour dénoter la même chose/action** (un mot par concept).
 >5. **Utiliser un _verbe_ qui décrit ce que fait une fonction lorsque vous la nommer.**
 
-| Conseil | Mauvais                                                                        | Bon |
-|---------|--------------------------------------------------------------------------------|-----|
-| 1       | `a = pd.read_csv("articles.csv")`                                              |`articles = pd.read_csv("articles.csv")`|
-| 2       | `tot_obs = 10`                                                                 |`total_observations = 10`|
-| 3       | `count_of_trees_in_the_city = 50` <br> `count_of_plants_in_the_city = 40 `<br> | `trees_count = 50` <br>`plants_count = 40 ` |
-| 4       | `get_observations()` <br>`fetch_annotations()`<br> | `get_observations()` <br>`get_annotations()`  |
-| 5       | `def articles(file_path):`<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`[code]`<br>| `def get_articles(file_path)`<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`[code]`<br> |
+| Conseil | Mauvais | Bon |
+|---------|---------|-----|
+| 1       | Mauvais |`a = pd.read_csv("articles.csv")` |
+| 1       | Bon     |`articles = pd.read_csv("articles.csv")`|
+| 2       | Mauvais |`tot_obs = 10` |
+| 2       | Bon     |`total_observations = 10`|
+| 3       | Mauvais | `count_of_trees_in_the_city = 50` <br> `count_of_plants_in_the_city = 40 `<br> |
+| 3       | Bon     | `trees_count = 50` <br>`plants_count = 40 ` |
+| 4       | Mauvais | `get_observations()` <br>`fetch_annotations()`<br> |
+| 4       | Bon     | `get_observations()` <br>`get_annotations()` |
+| 5       | Mauvais | `def articles(file_path):`<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`[code]`<br> |
+| 5       | Bon     | `def get_articles(file_path)`<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`[code]`<br> |
 
 
 
@@ -76,15 +81,81 @@ Privilégier le code propre.
 >4. **Fait une chose** (à un niveau d’abstraction). Votre fonction doit uniquement faire ce que son nom suggère. Par exemple, si votre fonction s’occupe de télécharger des données, elle doit uniquement faire cela. Elle ne doit pas s’occuper d’une partie de travail de nettoyage des données. «Faire une chose» doit être compris en relation avec le concept de niveau d'abstraction. La «chose», ou l’action, que fait une fonction peut très bien être décomposable en de multiples 
 actions plus simples. Pour faire une analogie avec une tâche de la vie quotidienne, «acheter du lait» peut être considéré comme faire une action, même si l’on peut décomposer cette action en une multitude d’actions plus simples. Si j'arrête prendre un café en allant acheter du lait, j'ai alors fait deux choses.
 
-| Conseil |             |                                                                                                                                                                                                                                                                                                                                                                                      |
-|---------|-------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 2       | **Mauvais** | `VALEUR_CONSTANTE = 5` <br> <br> `def function_avec_side_effect(arg):` <br> &nbsp;&nbsp;&nbsp;&nbsp;`VALEUR_CONSTANTE = arg`   <br><br/>                                                                                                                                                                                                                                             |
-| 2       | **Bon**     | `VALEUR_CONSTANTE = 5` <br> <br>`def function_sans_side_effect(arg):` <br> &nbsp;&nbsp;&nbsp;&nbsp;`arg = arg + VALEUR_CONSTANTE`  <br><br/>                                                                                                                                                                                                                                         |
-| 3       | **Mauvais** | `def function_multi_niveau(argument_1, argument_2):` <br> &nbsp;&nbsp;&nbsp;&nbsp; `argument_1 = fait_quelque_chose_de_tres_complexe(argument1, argument2)` <br>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`argument_1 = argument_1 + argument_2`<br><br/>                                                                                                                                      |
-| 3       | **Bon**     | `def function_un_niveau_simple(argument_1, argument_2):`<br> &nbsp;&nbsp;&nbsp;&nbsp; `argument_1 = argument_1 ** 2` <br>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`argument_1 = argument_1 + argument_2`<br><br/>                                                                                                                                                                             |
-| 3       | **Bon**     | `def function_un_niveau_complexe(argument_1, argument_2):`<br> &nbsp;&nbsp;&nbsp;&nbsp; `argument_1 = fait_quelque_chose_de_tres_complexe(argument_1)` <br>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`argument_1 = fait_une_autre_chose_complexe(argument_1, argument_2)` <br><br/>                                                                                                            |
-| 4       | **Mauvais** | `def nettoyer_les_dates(data):`<br> &nbsp;&nbsp;&nbsp;&nbsp; `data = enlever_les_mauvaises_date(data)`<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`data = mettre_les_dates_dans_le_bon_format(data)`<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`data = calcule_moyenne_par_jour(data)`<br> &nbsp;&nbsp;&nbsp;&nbsp; `data = calcule_moyenne_par_mois(data)`<br><br/>                                               |
-| 4       | **Bon**     | `def nettoyer_les_dates(data):`<br> &nbsp;&nbsp;&nbsp;&nbsp; `data = enlever_les_mauvaises_date(data)`<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`data = mettre_les_dates_dans_le_bon_format(data)`<br><br/>`def calculer_statistiques_par_jour`<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`data = calcule_moyenne_par_jour(data)`<br> &nbsp;&nbsp;&nbsp;&nbsp; `data = calcule_moyenne_par_mois(data)`<br><br/> |
+| Conseil |             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+|---------|-------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 2       | **Mauvais** | `VALEUR_CONSTANTE = 5` <br> <br> `def function_avec_side_effect(arg):` <br> &nbsp;&nbsp;&nbsp;&nbsp;`VALEUR_CONSTANTE = arg`   <br><br/>                                                                                                                                                                                                                                                                                                                                                       |
+| 2       | **Bon**     | `VALEUR_CONSTANTE = 5` <br> <br>`def function_sans_side_effect(arg):` <br> &nbsp;&nbsp;&nbsp;&nbsp;`arg = arg + VALEUR_CONSTANTE` <br> &nbsp;&nbsp;&nbsp; `return arg` <br><br/>                                                                                                                                                                                                                                                                                                               |
+| 3       | **Mauvais** | `def function_multi_niveau(argument_1, argument_2):` <br> &nbsp;&nbsp;&nbsp;&nbsp; `argument_1 = fait_quelque_chose_de_tres_complexe(argument1, argument2)` <br>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`argument_1 = argument_1 + argument_2`<br>  &nbsp;&nbsp;&nbsp;&nbsp; `return argument_1`<br><br/>                                                                                                                                                                                        |
+| 3       | **Bon**     | `def function_un_niveau_simple(argument_1, argument_2):`<br> &nbsp;&nbsp;&nbsp;&nbsp; `argument_1 = argument_1 ** 2` <br>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`argument_1 = argument_1 + argument_2`<br>  &nbsp;&nbsp;&nbsp;&nbsp; `return argument_1`<br><br/>                                                                                                                                                                                                                                                                                       |
+| 3       | **Bon**     | `def function_un_niveau_complexe(argument_1, argument_2):`<br> &nbsp;&nbsp;&nbsp;&nbsp; `argument_1 = fait_quelque_chose_de_tres_complexe(argument_1)` <br>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`argument_1 = fait_une_autre_chose_complexe(argument_1, argument_2)` <br>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `return argument_1` <br><br/>                                                                                                                                                             |
+| 4       | **Mauvais** | `def nettoyer_les_dates(data):`<br> &nbsp;&nbsp;&nbsp;&nbsp; `data = enlever_les_mauvaises_date(data)`<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`data = mettre_les_dates_dans_le_bon_format(data)`<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`data = calcule_moyenne_par_jour(data)`<br> &nbsp;&nbsp;&nbsp;&nbsp; `data = calcule_moyenne_par_mois(data)`<br>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `return data`<br><br/>                                                                                          |
+| 4       | **Bon**     | `def nettoyer_les_dates(data):`<br> &nbsp;&nbsp;&nbsp;&nbsp; `data = enlever_les_mauvaises_date(data)`<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`data = mettre_les_dates_dans_le_bon_format(data)`<br>  &nbsp;&nbsp;&nbsp;&nbsp; `return data`<br><br/>`def calculer_statistiques_par_jour`<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`data = calcule_moyenne_par_jour(data)`<br> &nbsp;&nbsp;&nbsp;&nbsp; `data = calcule_moyenne_par_mois(data)`<br>  &nbsp;&nbsp;&nbsp;&nbsp; `return data`<br><br/> |
+<br>
 
-> **Structure de l’article de journal**. Dans un fichier de fonctions (ou le fichier d’une classe), mettre les fonctions du plus haut niveau en haut du fichier, et les fonctions de plus bas niveau en bas du fichier. De cette manière, le lecteur pourra avoir accès à une vue d’ensemble en lisant le début du fichier, et pourra avoir accès à la complexité seulement s’il le désire. 
+> **Structure de l’article de journal**. 
+> Dans un fichier de fonctions (ou le fichier d’une classe), mettre les fonctions du plus haut niveau en haut du fichier, 
+> et les fonctions de plus bas niveau en bas du fichier. De cette manière, le lecteur pourra avoir accès à une vue d’ensemble 
+> en lisant le début du fichier, et pourra avoir accès à la complexité seulement s’il le désire. Le premier exemple de code
+> ci-bas présente un bout de code qui obéit à ce principe, et le second un bout de code qui y désobéit.
+> 
+>Dans le premier exemple, la première fonction que l'on rencontre, `nettoyer_les_donnees(data)`, est celle du plus haut niveau. On
+> rencontre ensuite les fonctions de plus bas niveau selon leur ordre d'apparition dans `nettoyer_les_donnees(data)`. Dans le second exemple, les fonctions sont dans un ordre aléatoire. On voit
+> tout de suite qu'il est plus difficile de naviguer dans ce «fichier» de fonctions.
+
+<br>
+
+**Exemple de code qui respecte la structure de l'article de journal**
+```python
+def nettoyer_les_donnees(data):
+    data = remplacer_les_NA_par_moyenne(data)
+    data = nettoyer_les_dates(data)
+    data = gerer_les_donnees_aberrantes(data)
+    return data
+
+def remplacer_les_NA_par_moyenne(data):
+    [code]
+    
+def nettoyer_les_dates(data):
+    [code]
+    
+def gerer_les_donnees_aberrantes(data):
+    for colonne in data:
+        if colonne_contient_valeurs_aberrantes(colonne):
+            effacer_valeurs_abberantes(colonne)
+
+def colonne_contient_valeurs_aberrantes(colonne):
+    [code]
+
+def effacer_valeurs_abberantes(colonne):
+    [code]
+```
+
+<br>
+
+**Exemple de code qui _NE respecte PAS_ la structure de l'article de journal**
+```python
+def colonne_contient_valeurs_aberrantes(colonne):
+    [code]
+
+def effacer_valeurs_abberantes(colonne):
+    [code]
+    
+def remplacer_les_NA_par_moyenne(data):
+    [code]
+    
+def nettoyer_les_dates(data):
+    [code]
+
+def nettoyer_les_donnees(data):
+    data = remplacer_les_NA_par_moyenne(data)
+    data = nettoyer_les_dates(data)
+    data = gerer_les_donnees_aberrantes(data)
+    return data
+    
+def gerer_les_donnees_aberrantes(data):
+    for colonne in data:
+        if colonne_contient_valeurs_aberrantes(colonne):
+            effacer_valeurs_abberantes(colonne)
+
+```
 
