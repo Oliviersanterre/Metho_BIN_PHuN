@@ -47,7 +47,7 @@ la plupart du temps, utiliser son énergie pour essayer d'écrire du code propre
 des commentaires. Voici donc quelques conseils en lien avec les commentaires. Si l'on devait retenir un grand
 principe par rapport aux commentaires ce serait celui-ci : **privilégier le code propre**
 
->### Quelques conseils par rapport aux commentaires
+### Quelques conseils par rapport aux commentaires
 >1. Plutôt que d’écrire de longs commentaires afin d’expliquer comment fonctionne un bout de code malpropre, prenez ce temps pour essayer de **rendre votre code plus propre**. 
 >2. **Éviter les commentaires qui expliquent ce que fait du code simple**. Vous pouvez tenir pour acquis que la personne qui lira votre code connaît les fonctionnalités de base du langage que vous utilisez. Il n’a pas besoin de plus d’explications. 
 >3. **Ne pas laisser de code commenté**. On peut avoir tendance à commenter du code qui ne sert plus, mais dont on pense avoir besoin plus tard. Il vaut mieux l’effacer et se reposer sur notre outil de contrôle des versions (git). 
@@ -68,6 +68,9 @@ principe par rapport aux commentaires ce serait celui-ci : **privilégier le cod
 >4. **Expliquer un bout de code complexe** (dont la logique serait difficile à comprendre même pour un programmeur ou une programmeuse d’expérience). 
 
 ## 3. Les fonctions
+Lorsqu'un projet grossit, écrire des fonctions devient inévitable. Si l'on veut écrire du code propre, on 
+doit répondre à la question de savoir ce qu'est une bonne fonction, et comment décomposer son code en fonction. C'est
+à ces questions que cette section tentera de répondre.
 
 ### L’utilité des fonctions  
 >* **Éviter la redondance**. Avoir plusieurs versions d’un même bout de code peut générer des erreurs. En effet, si l’on veut modifier ce bout de code, on devra mettre à jour chaque version. Or, il se peut qu’on oublie de le faire pour une version. On prend alors le risque d’avoir deux bouts de code qu’on croit identiques, mais qui font des choses différentes. 
