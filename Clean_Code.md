@@ -2,13 +2,12 @@
 **Les conseils proposés dans ce guide sont tirés, en majeur partie, de l'ouvrage _Clean Code: A Handbook of Agile Software
 Craftsmanship_ de Robert C. Martin. Il s'agit d'un ouvrage de référence sur la question
 des bonnes pratiques de programmation. Seul le contenu des quatre premiers chapitres de l'ouvrage sont résumés dans ce guide. 
-Nous vous invitons à consulter le livre si vous voulez aller plus loin.**
+Nous vous invitons à consulter le livre si vous désirez aller plus loin.**
 
 ## 1. Nommer les variables
 
-Coder proprement nécessite d'abord et avant tout de bien nommer ses variables. Du code
-dont les variables sont mal nommées peut rapidement dewvenir incompréhensible, même pour
-son auteur.
+Coder proprement nécessite d'abord et avant tout de bien nommer ses variables. Des variables mal nommées peut 
+rendre le code incompréhensible, même pour son auteur.
 
 Le grand principe à respecter lorsqu'on nomme ses variables : **révéler l'intention**.
 Pour le dire succintement il faut dire :
@@ -39,15 +38,16 @@ Pour le dire succintement il faut dire :
 
 ## 2. Les commentaires
 
-Il y a une croyance assez répendue dans le monde de la programmation selon laquelle plus
-on commente notre code, mieux c'est. Selon l'auteur de _Clean Code_, cette croyance est fausse. Le grand
+Il y a une croyance assez répendue dans le monde de la programmation selon laquelle il faut abondamment commenter
+son code. Selon l'auteur de _Clean Code_, cette croyance est fausse. Le grand
 danger réside dans le fait que l'on peut oublier de mettre à jour des commentaires. Lorsque
 cela se produit, les commentaires peuvent nous induire en erreur. Pour paraphraser Robert C. Martin :
 **«les commentaires peuvent mentir, mais le code dit la vérité»**. Sachant cela, il vaut mieux,
-la plupart du temps, utiliser son énergie pour essayer d'écrire du code propre au lieu d'écrire
-des commentaires. Voici donc quelques conseils en lien avec les commentaires
-Privilégier le code propre. 
->**Les choses à éviter**
+la plupart du temps, utiliser son énergie pour essayer d'écrire du code propre plutôt que d'écrire
+des commentaires. Voici donc quelques conseils en lien avec les commentaires. Si l'on devait retenir un grand
+principe par rapport aux commentaires ce serait celui-ci : **privilégier le code propre**
+
+>### Quelques conseils par rapport aux commentaires
 >1. Plutôt que d’écrire de longs commentaires afin d’expliquer comment fonctionne un bout de code malpropre, prenez ce temps pour essayer de **rendre votre code plus propre**. 
 >2. **Éviter les commentaires qui expliquent ce que fait du code simple**. Vous pouvez tenir pour acquis que la personne qui lira votre code connaît les fonctionnalités de base du langage que vous utilisez. Il n’a pas besoin de plus d’explications. 
 >3. **Ne pas laisser de code commenté**. On peut avoir tendance à commenter du code qui ne sert plus, mais dont on pense avoir besoin plus tard. Il vaut mieux l’effacer et se reposer sur notre outil de contrôle des versions (git). 
@@ -61,7 +61,7 @@ Privilégier le code propre.
 
 
 
->**Les commentaires sont **utiles** pour** : <br>
+### Les commentaires sont utiles pour
 >1. **Justifier un choix**, par exemple si vous faites un choix d’algorithme, un choix de libraire, ou un choix de conception qui mérite d’être justifié. <br>
 >2. **Indiquer la durée que prend l’exécution d’un bout de code** (si c’est long). <br>
 >3. **Documenter une fonction** (préciser le type des paramètres et les données retournées). Voir, par exemple, l'outil [Docstrings](https://realpython.com/documenting-python-code/#documenting-your-python-code-base-using-docstrings) en _python_
@@ -69,12 +69,12 @@ Privilégier le code propre.
 
 ## 3. Les fonctions
 
->**L’utilité des fonctions** : 
+### L’utilité des fonctions  
 >* **Éviter la redondance**. Avoir plusieurs versions d’un même bout de code peut générer des erreurs. En effet, si l’on veut modifier ce bout de code, on devra mettre à jour chaque version. Or, il se peut qu’on oublie de le faire pour une version. On prend alors le risque d’avoir deux bouts de code qu’on croit identiques, mais qui font des choses différentes. 
 >* **Dévoiler ce que son code fait**. En imbriquant notre code dans des fonctions, et en faisant bien notre travail de nommage de ces fonctions, on dévoile au lecteur ce que notre code fait. 
 >* **Masquer la complexité**. La personne qui lit notre code n’a pas toujours besoin de savoir comment fonctionne notre code dans le détail. En imbriquant notre code dans des fonctions, on offre au lecteur une sorte de résumé de ce que notre code fait. S’il veut avoir plus de détails, il pourra aller voir l’implémentation de nos fonctions. 
 
->**Conseils pour écrire de bonnes fonctions** <br>
+### Conseils pour écrire de bonnes fonctions
 >1. **Courtes**. Viser un maximum de 20 lignes. Si elle est plus longue, on doit la décomposer en de multiples fonctions plus courtes. 
 >2. **Aucun _side effect_** : Une fonction ne change pas la valeur de variables déclarées à l’extérieur d’elle. 
 >3. **Un niveau d’abstraction**. Le code au plus bas niveau d'abstraction est le code qui fait les opérations les plus simples, par exemple, lire un fichier, faire des opérations simples sur des chaînes de caractères ou sur des listes, faire des opérations mathématiques, etc. Une fonction qui regroupe du code du plus bas niveau serait au deuxième niveau d’abstraction, et une fonction qui regroupe une multitude de fonctions de deuxième niveau serait au troisième niveau, et ainsi de suite. Dans une fonction, il faut éviter d’avoir des lignes de codes qui sont à différents niveaux d'abstractions. 
@@ -92,7 +92,7 @@ actions plus simples. Pour faire une analogie avec une tâche de la vie quotidie
 | 4       | **Bon**     | `def nettoyer_les_dates(data):`<br> &nbsp;&nbsp;&nbsp;&nbsp; `data = enlever_les_mauvaises_date(data)`<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`data = mettre_les_dates_dans_le_bon_format(data)`<br>  &nbsp;&nbsp;&nbsp;&nbsp; `return data`<br><br/>`def calculer_statistiques_par_jour`<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`data = calcule_moyenne_par_jour(data)`<br> &nbsp;&nbsp;&nbsp;&nbsp; `data = calcule_moyenne_par_mois(data)`<br>  &nbsp;&nbsp;&nbsp;&nbsp; `return data`<br><br/> |
 <br>
 
-> **Structure de l’article de journal**. 
+### Structure de l’article de journal
 > Dans un fichier de fonctions (ou le fichier d’une classe), mettre les fonctions du plus haut niveau en haut du fichier, 
 > et les fonctions de plus bas niveau en bas du fichier. De cette manière, le lecteur pourra avoir accès à une vue d’ensemble 
 > en lisant le début du fichier, et pourra avoir accès à la complexité seulement s’il le désire. Le premier exemple de code
