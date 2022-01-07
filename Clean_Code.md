@@ -6,7 +6,7 @@ Nous vous invitons à consulter le livre si vous désirez aller plus loin.**
 
 ## 1. Nommer les variables
 
-Coder proprement nécessite d'abord et avant tout de bien nommer ses variables. Des variables mal nommées peut 
+Coder proprement nécessite d'abord et avant tout de bien nommer ses variables. Des variables mal nommées peuvent rapidement 
 rendre le code incompréhensible, même pour son auteur.
 
 Le grand principe à respecter lorsqu'on nomme ses variables : **révéler l'intention**.
@@ -21,35 +21,35 @@ Pour le dire succintement il faut dire :
 >4. **Éviter d’utiliser deux mots différents pour dénoter la même chose/action** (un mot par concept).
 >5. **Utiliser un _verbe_ qui décrit ce que fait une fonction lorsque vous la nommer.**
 
-| Conseil | Mauvais | Bon |
-|---------|---------|-----|
-| 1       | Mauvais |`a = pd.read_csv("articles.csv")` |
-| 1       | Bon     |`articles = pd.read_csv("articles.csv")`|
-| 2       | Mauvais |`tot_obs = 10` |
-| 2       | Bon     |`total_observations = 10`|
-| 3       | Mauvais | `count_of_trees_in_the_city = 50` <br> `count_of_plants_in_the_city = 40 `<br> |
-| 3       | Bon     | `trees_count = 50` <br>`plants_count = 40 ` |
-| 4       | Mauvais | `get_observations()` <br>`fetch_annotations()`<br> |
-| 4       | Bon     | `get_observations()` <br>`get_annotations()` |
-| 5       | Mauvais | `def articles(file_path):`<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`[code]`<br> |
-| 5       | Bon     | `def get_articles(file_path)`<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`[code]`<br> |
+| Conseil | Mauvais   | Bon |
+|---------|-----------|-----|
+| 1       | **Mauvais** |`a = pd.read_csv("articles.csv")` |
+| 1       | **Bon**       |`articles = pd.read_csv("articles.csv")`|
+| 2       | **Mauvais**   |`tot_obs = 10` |
+| 2       | **Bon**       |`total_observations = 10`|
+| 3       | **Mauvais**   | `count_of_trees_in_the_city = 50` <br> `count_of_plants_in_the_city = 40 `<br> |
+| 3       | **Bon**       | `trees_count = 50` <br>`plants_count = 40 ` |
+| 4       | **Mauvais**   | `get_observations()` <br>`fetch_annotations()`<br> |
+| 4       | **Bon**       | `get_observations()` <br>`get_annotations()` |
+| 5       | **Mauvais**   | `def articles(file_path):`<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`[code]`<br> |
+| 5       | **Bon**       | `def get_articles(file_path)`<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`[code]`<br> |
 
 
 
 ## 2. Les commentaires
 
-Il y a une croyance assez répendue dans le monde de la programmation selon laquelle il faut abondamment commenter
+Il y a une croyance assez répendue dans le monde de la programmation selon laquelle on doit abondamment commenter
 son code. Selon l'auteur de _Clean Code_, cette croyance est fausse. Le grand
 danger réside dans le fait que l'on peut oublier de mettre à jour des commentaires. Lorsque
-cela se produit, les commentaires peuvent nous induire en erreur. Pour paraphraser Robert C. Martin :
+cela se produit, les commentaires peuvent nous induire en erreur. Pour citer Robert C. Martin :
 **«les commentaires peuvent mentir, mais le code dit la vérité»**. Sachant cela, il vaut mieux,
 la plupart du temps, utiliser son énergie pour essayer d'écrire du code propre plutôt que d'écrire
-des commentaires. Voici donc quelques conseils en lien avec les commentaires. Si l'on devait retenir un grand
-principe par rapport aux commentaires ce serait celui-ci : **privilégier le code propre**
+des commentaires. Si l'on devait retenir un grand principe par rapport aux commentaires ce serait celui-ci : **privilégier 
+le code propre**. Voici donc quelques conseils en lien avec les commentaires. 
 
 ### Quelques conseils par rapport aux commentaires
 >1. Plutôt que d’écrire de longs commentaires afin d’expliquer comment fonctionne un bout de code malpropre, prenez ce temps pour essayer de **rendre votre code plus propre**. 
->2. **Éviter les commentaires qui expliquent ce que fait du code simple**. Vous pouvez tenir pour acquis que la personne qui lira votre code connaît les fonctionnalités de base du langage que vous utilisez. Il n’a pas besoin de plus d’explications. 
+>2. **Éviter les commentaires qui expliquent ce que fait du code simple**. Vous pouvez tenir pour acquis que la personne qui lira votre code connaît les fonctionnalités de base du langage que vous utilisez. Il ou elle n’a pas besoin de plus d’explications. 
 >3. **Ne pas laisser de code commenté**. On peut avoir tendance à commenter du code qui ne sert plus, mais dont on pense avoir besoin plus tard. Il vaut mieux l’effacer et se reposer sur notre outil de contrôle des versions (git). 
 
 | Conseil |      |                                                                                                                                                                                                                                                |
@@ -62,14 +62,14 @@ principe par rapport aux commentaires ce serait celui-ci : **privilégier le cod
 
 
 ### Les commentaires sont utiles pour
->1. **Justifier un choix**, par exemple si vous faites un choix d’algorithme, un choix de libraire, ou un choix de conception qui mérite d’être justifié. <br>
+>1. **Justifier un choix**, par exemple si vous faites un choix d’algorithme, un choix de librairie, ou un choix de conception qui mérite d’être justifié. <br>
 >2. **Indiquer la durée que prend l’exécution d’un bout de code** (si c’est long). <br>
 >3. **Documenter une fonction** (préciser le type des paramètres et les données retournées). Voir, par exemple, l'outil [Docstrings](https://realpython.com/documenting-python-code/#documenting-your-python-code-base-using-docstrings) en _python_
 >4. **Expliquer un bout de code complexe** (dont la logique serait difficile à comprendre même pour un programmeur ou une programmeuse d’expérience). 
 
 ## 3. Les fonctions
 Lorsqu'un projet grossit, écrire des fonctions devient inévitable. Si l'on veut écrire du code propre, on 
-doit répondre à la question de savoir ce qu'est une bonne fonction, et comment décomposer son code en fonction. C'est
+doit répondre à la question de savoir ce qu'est une bonne fonction, et comment décomposer son code en fonctions. C'est
 à ces questions que cette section tentera de répondre.
 
 ### L’utilité des fonctions  
@@ -80,7 +80,7 @@ doit répondre à la question de savoir ce qu'est une bonne fonction, et comment
 ### Conseils pour écrire de bonnes fonctions
 >1. **Courtes**. Viser un maximum de 20 lignes. Si elle est plus longue, on doit la décomposer en de multiples fonctions plus courtes. 
 >2. **Aucun _side effect_** : Une fonction ne change pas la valeur de variables déclarées à l’extérieur d’elle. 
->3. **Un niveau d’abstraction**. Le code au plus bas niveau d'abstraction est le code qui fait les opérations les plus simples, par exemple, lire un fichier, faire des opérations simples sur des chaînes de caractères ou sur des listes, faire des opérations mathématiques, etc. Une fonction qui regroupe du code du plus bas niveau serait au deuxième niveau d’abstraction, et une fonction qui regroupe une multitude de fonctions de deuxième niveau serait au troisième niveau, et ainsi de suite. Dans une fonction, il faut éviter d’avoir des lignes de codes qui sont à différents niveaux d'abstractions. 
+>3. **Un niveau d’abstraction**. Le code au plus bas niveau d'abstraction est le code qui fait les opérations les plus simples, par exemple, lire un fichier, faire des opérations simples sur des chaînes de caractères ou sur des listes, faire des opérations mathématiques, etc. Une fonction qui regroupe du code du plus bas niveau serait au premier niveau d’abstraction, et une fonction qui regroupe une multitude de fonctions de premier niveau serait au deuxième niveau, et ainsi de suite. Dans une fonction, il faut éviter d’avoir des lignes de codes qui sont à différents niveaux d'abstractions. 
 >4. **Fait une chose** (à un niveau d’abstraction). Votre fonction doit uniquement faire ce que son nom suggère. Par exemple, si votre fonction s’occupe de télécharger des données, elle doit uniquement faire cela. Elle ne doit pas s’occuper d’une partie de travail de nettoyage des données. «Faire une chose» doit être compris en relation avec le concept de niveau d'abstraction. La «chose», ou l’action, que fait une fonction peut très bien être décomposable en de multiples 
 actions plus simples. Pour faire une analogie avec une tâche de la vie quotidienne, «acheter du lait» peut être considéré comme faire une action, même si l’on peut décomposer cette action en une multitude d’actions plus simples. Si j'arrête prendre un café en allant acheter du lait, j'ai alors fait deux choses.
 
@@ -96,7 +96,7 @@ actions plus simples. Pour faire une analogie avec une tâche de la vie quotidie
 <br>
 
 ### Structure de l’article de journal
-> Dans un fichier de fonctions (ou le fichier d’une classe), mettre les fonctions du plus haut niveau en haut du fichier, 
+> Dans un fichier de fonctions (ou le fichier d’une classe), on suggère de mettre les fonctions du plus haut niveau en haut du fichier, 
 > et les fonctions de plus bas niveau en bas du fichier. De cette manière, le lecteur pourra avoir accès à une vue d’ensemble 
 > en lisant le début du fichier, et pourra avoir accès à la complexité seulement s’il le désire. Le premier exemple de code
 > ci-bas présente un bout de code qui obéit à ce principe, et le second un bout de code qui y désobéit.
